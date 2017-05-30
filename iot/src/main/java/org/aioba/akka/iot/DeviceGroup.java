@@ -6,10 +6,12 @@ import akka.actor.Props;
 import akka.actor.Terminated;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import scala.concurrent.duration.FiniteDuration;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class DeviceGroup extends AbstractActor {
 
@@ -18,6 +20,7 @@ public class DeviceGroup extends AbstractActor {
     final String groupId;
     final Map<String, ActorRef> deviceIdToActor = new HashMap<>();
     final Map<ActorRef, String> actorToDeviceId = new HashMap<>();
+    final long nextCollectionId = 0L;
 
     public static Props props(String groupId){
         return Props.create(DeviceGroup.class, groupId);
@@ -102,10 +105,15 @@ public class DeviceGroup extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
+            .match(RequestAllTemperatures.class, this::onAllTemperatures)
             .match(DeviceManager.RequestTrackDevice.class, this::onTrackDevice)
             .match(RequestDeviceList.class, this::onDeviceList)
             .match(Terminated.class, this::onTerminated)
             .build();
+    }
+
+    private void onAllTemperatures(RequestAllTemperatures r){
+        getContext().actorOf(DeviceGroupQuery.props(actorToDeviceId, r.requestId, getSender(), new FiniteDuration(3, TimeUnit.SECONDS)));
     }
 
     private void onTrackDevice(DeviceManager.RequestTrackDevice trackMsg){
