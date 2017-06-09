@@ -1,8 +1,6 @@
 package org.aioba.akka.iot;
 
 import akka.actor.*;
-import akka.event.Logging;
-import akka.event.LoggingAdapter;
 import scala.concurrent.duration.FiniteDuration;
 
 import java.util.HashMap;
@@ -11,8 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class DeviceGroupQuery extends AbstractActor {
-
-    private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     final Map<ActorRef, String> actorToDeviceId;
     final long requestId;

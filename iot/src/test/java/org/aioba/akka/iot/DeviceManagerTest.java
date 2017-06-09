@@ -2,15 +2,12 @@ package org.aioba.akka.iot;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.PoisonPill;
 import akka.testkit.TestKit;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import scala.concurrent.duration.Duration;
-import scala.concurrent.duration.FiniteDuration;
 
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

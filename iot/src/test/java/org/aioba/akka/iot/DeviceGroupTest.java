@@ -3,7 +3,6 @@ package org.aioba.akka.iot;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.PoisonPill;
-import akka.testkit.JavaTestKit;
 import akka.testkit.TestKit;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
