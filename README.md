@@ -43,19 +43,19 @@
 * supports **streams** of data incoming from a network
 * supports **http** communication
 
-### Location Transparency
+## Location Transparency
 * Akka shall be properly configured to work behind NAT or dokers
 
-### Akka and Java Memory Model
+## Akka and Java Memory Model
 * Folows _at most once_ patterns for message delivery
 * if you need a guarantee mechanism you can implement somthing on top of it (like SIP over UDP)
 
-### Message Delivery Reliability
+## Message Delivery Reliability
 * event sourcing
 * auto ack
 * dead letters
 
-### Configuration
+## Configuration
 * read configuration from a file and supports callback
 * it allows a configuration file _includes_ another one
 * logging configuration
@@ -64,8 +64,6 @@
 * configure actors support wildcards
 
 ## Actors
-
-### Actors
 * Actor have a lifecycle
 * Actor can be selected by using an ActorSelection
 * Actor are created by using an ActorRef
@@ -80,20 +78,20 @@
 * Actos reincarnation can be performed by _constructors_ or _pre-start_, the former gurantee immutability while the latter gives flexibility to change inner content
 * Initialization via _message passing_ isn't recommended
 
-### Supervision Strategy
+## Supervision Strategy
 * Allows to define how errors shall be handled
 * It allows OneForOne and AllForOne strategy
 * It has maximum failtures accepts per time
 * It decides what to do whena failure occurs, including escalate it
 * It has default behaviors (see akka documentation)
 
-### Message Dispatchers
+## Message Dispatchers
 * It handles the thread pool which handle the actors and its messages
 * Default dispatcher uses a fork-join-executor or a thread-pool-executor
 * PinnedDispatcher to have one thread per actor
 * CallingThreadDispatcher the thread whom call the actor is the which will handle it (use it for test only)
 
-### Mailboxes
+## Mailboxes
 * Each actor has its own mailbox
 * It is possible to customize the mailbox for each actor
 * SingleConsumerOnlyUnboundedMailbox is an unbounded with a single consumer
@@ -104,7 +102,7 @@
 * (Un)boundedStablePriorityMailbox in order to guarantee order for messages with same priority (FIFO)
 * It is possible to customize mailboxes
 
-### Routing
+## Routing
 * Routes can be used as load balancer for actors
 * It is possible to create the routes when getting actor references
 * Routes can reference remote actors
@@ -113,12 +111,12 @@
 * It is possible to resize the routing pool during routing process itself
 * It is possible to create a custom router
 
-### FSM
+## FSM
 * Akka allows to create actors as Finite State Machines
 * Every state can have a timeout setted
 * it allows to monitor the fsm about all state transitions
 
-### Persistence
+## Persistence
 * Uses Event Source to recovery current state and allows take snapshots of the state to reduce recovery time
 * It has pluings for file system and leveldb
 * It is possible to _stash_ some data before persist it itself
@@ -127,7 +125,7 @@
 * It supports Actors and FSMs
 * Do not rely on java serialization which is the default one used by akka
 
-### Testing Actor Systems
+## Testing Actor Systems
 * It has a testkit
 * It supports built-in assertions
 * It supports to check expected log messages
@@ -138,12 +136,12 @@
 * It supports to trace parent invocations
 * Supports to use CallingThreadDispatcher and prevent from multi-parallel-stack
 
-### Networking
+## Networking
 * Akka supports clustering actors through distinct nodes
 * It has a library to support TCP and UDP protocols
 * It has a library to support Apache Camel
 
-### Streams
+## Streams
 * Reusable Streams, Timed-based processing
 * Srouces are things with one output stream
 * Sinks are things with one output stream
@@ -160,11 +158,11 @@
 * Supports buffers and flow ratio
 * It supports dynamic _graph_ mutation
 
-### Future and Agents
+## Future and Agents
 * Uses future to handle answers (like _g7 requests_), it supports ordering, callbaks, onfailures, onsuccess, etc.
 * See about Future, CompletionStage and CompletableFuture
 
-### Utilities
+## Utilities
 * Defines a pattern for an EventBus (publish/subscribe)
 * Allows to perform publish/subscribers based on classifiers
 * Allows to perform publish/subscribers on event streams
@@ -174,7 +172,7 @@
 * Durations
 * Circuit Breakers
 
-### HTTP
+## HTTP
 * Full server and client http agents
 * It has a core and a high level api architecture
 * It supports http routes based on paths
